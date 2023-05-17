@@ -2,40 +2,35 @@ import axios from "axios";
 
 const API_URL = "https://job.kitactive.ru";
 
-class AuthService {
-	register(name, email, password) {
-		return axios.post(API_URL + "/api/register", {
-			name,
-			email,
-			password,
-		});
-	}
 
-	login(email, password) {
-		return axios
-			.post(API_URL + "/api/login", { email, password })
-			.then((response) => {
-				if (response.data.accessToken) {
-					localStorage.setItem("user", JSON.stringify(response.data));
-				}
-
-				return response.data;
-			});
-	}
-
-	logout() {
-		localStorage.removeItem("user");
-
-		// return axios
-		// 	.post(API_URL + "/api/logout", {})
-		// 	.then((response) => {
-		// 		if (response.data.accessToken) {
-		// 			localStorage.setItem("user", JSON.stringify(response.data));
-		// 		}
-
-		// 		return response.data;
-		// 	});
-	}
+export function register({ name, email, password }) {
+	return axios.post(API_URL + "/api/register", {
+		name,
+		email,
+		password,
+	});
 }
 
-export default new AuthService();
+export async function login({ email, password }) {
+	const response = await axios
+		.post(API_URL + "/api/login", { email, password })
+	if (response.data.token) {
+		localStorage.setItem("accessToken", response.data.token);
+	}
+
+	return response.data.token
+}
+
+export async function logout() {
+	// вытаскиваем токен, чтобы заработал logout
+	const accessToken = localStorage.getItem("accessToken")
+	// и тут же удаляем его
+	localStorage.removeItem("accessToken")
+
+	// в заголовок Authorization передаем токен
+	await axios({
+		method: 'post',
+		url: API_URL + '/api/logout',
+		headers: { Authorization: `Bearer ${accessToken}` }
+	})
+}
