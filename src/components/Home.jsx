@@ -7,8 +7,14 @@ export default function Home() {
 
 	return (
 		<>
-			<Link to="/sign-up">SignUp</Link>
-			<Link to="/sign-in">SignIn</Link>
+			<div className="flex justify-between">
+				<div>Home</div>
+				<div className='flex gap-2'>
+					<Link to="/sign-up">Sign Up</Link>
+					<Link to="/sign-in">Sign In</Link>
+				</div>
+			</div>
+
 		</>
 	)
 }

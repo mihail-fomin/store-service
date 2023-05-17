@@ -1,6 +1,8 @@
-import { register, login, logout } from '../services/auth.service'
+import { register } from '../services/auth.service'
 import * as React from 'react'
-
+import {
+	Link,
+} from "react-router-dom";
 
 
 export default function SignUp() {
@@ -9,15 +11,23 @@ export default function SignUp() {
 
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">
-				Hello world!
-			</h1>
-			<form onSubmit={
-				(e) => {
-					e.preventDefault()
-					register(value)
+			<div className="flex justify-between">
+				<div>Sign Up</div>
+				<div className='flex gap-2'>
+					<Link to="/">Home</Link>
+					<Link to="/sign-in">Sign In</Link>
+				</div>
+			</div>
+
+			<form
+				className='mt-3'
+				onSubmit={
+					(e) => {
+						e.preventDefault()
+						register(value)
+					}
 				}
-			}>
+			>
 				<label>
 					email
 					<input
