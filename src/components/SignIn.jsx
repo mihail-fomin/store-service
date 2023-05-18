@@ -6,8 +6,9 @@ import {
 
 
 
-export default function SignIn() {
-	const [value, setValue] = React.useState({ email: '', password: '' })
+export default function () {
+	const [email, setEmail] = React.useState('')
+	const [password, setPassword] = React.useState('')
 
 
 	return (
@@ -15,17 +16,17 @@ export default function SignIn() {
 			<nav className="navigation">
 				<div className="font-bold">Sign In</div>
 				<div className='flex gap-2'>
-					<Link to="/">Home</Link>
-					<Link to="/sign-up">Sign Up</Link>
+					<Link className="link" to="/">Home</Link>
+					<Link className="link" to="/sign-up">Sign Up</Link>
 				</div>
 			</nav>
 
 			<form
 				className='mt-3'
 				onSubmit={
-					(e) => {
+					() => {
 						e.preventDefault()
-						login(value)
+						login(email, password)
 					}
 				}>
 
@@ -33,23 +34,17 @@ export default function SignIn() {
 					email
 					<input
 						type='email'
-						value={value.email}
-						onChange={(e) => setValue({
-
-							email: e.target.value,
-							password: value.password,
-						})} />
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
 				</label>
 				<label>
 					password
 					<input
 						type='password'
-						value={value.password}
-						onChange={(e) => setValue({
-
-							email: value.email,
-							password: e.target.value,
-						})} />
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+					/>
 				</label>
 				<button
 					type='submit'

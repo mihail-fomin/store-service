@@ -3,15 +3,15 @@ import axios from "axios";
 const API_URL = "https://job.kitactive.ru";
 
 
-export function register({ name, email, password }) {
+export function register(email, name, password) {
 	return axios.post(API_URL + "/api/register", {
-		name,
 		email,
+		name,
 		password,
 	});
 }
 
-export async function login({ email, password }) {
+export async function login(email, password) {
 	const response = await axios
 		.post(API_URL + "/api/login", { email, password })
 	if (response.data.token) {

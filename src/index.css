@@ -10,10 +10,22 @@ body {
 	@apply absolute top-0 flex justify-between w-full mt-3 border-b-2 pb-2
 }
 
+.link:hover {
+	@apply text-sky-600
+}
+
 input {
 	@apply block border-2 border-gray-200 px-2 rounded
 }
 
 input:focus {
 	@apply border-sky-500 outline-none
+}
+
+button {
+	@apply block p-2 mt-3 transition-all duration-100 border-2 rounded border-sky-700
+}
+
+button:hover {
+	@apply bg-sky-100
 }
