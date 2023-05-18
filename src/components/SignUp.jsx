@@ -11,13 +11,13 @@ export default function SignUp() {
 
 	return (
 		<>
-			<div className="flex justify-between">
-				<div>Sign Up</div>
+			<nav className="navigation">
+				<div className="font-bold">Sign Up</div>
 				<div className='flex gap-2'>
 					<Link to="/">Home</Link>
 					<Link to="/sign-in">Sign In</Link>
 				</div>
-			</div>
+			</nav>
 
 			<form
 				className='mt-3'
@@ -44,7 +44,7 @@ export default function SignUp() {
 				<label>
 					name
 					<input
-						className=' block border-2 border-sky-700'
+						className='block border-2 border-sky-700'
 						type='text'
 						value={value.name}
 						onChange={(e) => setValue({

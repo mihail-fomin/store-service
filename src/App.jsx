@@ -1,4 +1,3 @@
-import './App.css'
 import Home from './components/Home';
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn';
@@ -11,7 +10,7 @@ function App() {
 
 
 	return (
-		<div className='mx-auto w-[90%] mt-3'>
+		<div className="w-[90%] mx-auto relative flex flex-col items-center justify-center h-screen">
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/sign-up" element={<SignUp />} />

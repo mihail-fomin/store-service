@@ -1,5 +1,8 @@
 import { login } from '../services/auth.service'
 import * as React from 'react'
+import {
+	Link,
+} from "react-router-dom";
 
 
 
@@ -9,20 +12,26 @@ export default function SignIn() {
 
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">
-				Hello world!
-			</h1>
-			<form onSubmit={
-				(e) => {
-					e.preventDefault()
-					login(value)
-				}
-			}>
+			<nav className="navigation">
+				<div className="font-bold">Sign In</div>
+				<div className='flex gap-2'>
+					<Link to="/">Home</Link>
+					<Link to="/sign-up">Sign Up</Link>
+				</div>
+			</nav>
+
+			<form
+				className='mt-3'
+				onSubmit={
+					(e) => {
+						e.preventDefault()
+						login(value)
+					}
+				}>
 
 				<label>
 					email
 					<input
-						className=' block border-2 border-sky-700'
 						type='email'
 						value={value.email}
 						onChange={(e) => setValue({
@@ -34,7 +43,6 @@ export default function SignIn() {
 				<label>
 					password
 					<input
-						className='block border-2 border-sky-700'
 						type='password'
 						value={value.password}
 						onChange={(e) => setValue({
