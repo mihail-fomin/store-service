@@ -1,9 +1,9 @@
 import { login } from '../../services/auth.service'
 import * as React from 'react'
 import { Formik, Form, Field } from 'formik';
-
+import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
-
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -23,10 +23,11 @@ export default function SignInForm() {
 					}
 					return errors;
 				}}
-				onSubmit={(values, { setSubmitting }) => {
-					login(values)
-					setSubmitting(false);
-				}}
+				onSubmit={
+					async (values) => {
+						await login(values);
+						navigate('/dashboard', { replace: true })
+					}}
 			>
 				{({
 					values,
@@ -35,8 +36,6 @@ export default function SignInForm() {
 					handleChange,
 					handleBlur,
 					handleSubmit,
-					isSubmitting,
-					/* and other goodies */
 				}) => (
 					<Form onSubmit={handleSubmit}>
 						<label>
