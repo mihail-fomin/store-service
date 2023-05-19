@@ -1,6 +1,6 @@
 import Home from './components/Home';
-import SignUp from './components/SignUp'
-import SignIn from './components/SignIn';
+import SignUp from './components/SignUp/SignUp'
+import SignIn from './components/SignIn/SignIn';
 import {
 	Routes,
 	Route,

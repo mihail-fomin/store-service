@@ -29,3 +29,11 @@ button {
 button:hover {
 	@apply bg-sky-100
 }
+
+button:disabled {
+	@apply text-gray-500 cursor-not-allowed border-gray-400
+}
+
+button:disabled:hover {
+	@apply bg-white
+}
