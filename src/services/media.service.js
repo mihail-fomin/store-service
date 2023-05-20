@@ -24,5 +24,6 @@ export async function getFiles() {
 				'Authorization': `Bearer ${accessToken}`,
 			}
 		})
-	console.log('response getFiles: ', response);
+	console.log('response getFiles: ', response.data.files);
+	return response.data.files
 }

@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { upload } from '../services/media.service'
+import { Link } from 'react-router-dom'
+import { upload, getFiles } from '../services/media.service'
 
 export default function Dashboard() {
 
@@ -12,7 +13,18 @@ export default function Dashboard() {
 
 	return (
 		<>
-			<h1>Dashboard</h1>
+			<nav className="navigation">
+				<div className="font-bold">Dasboard</div>
+				<div className='flex gap-4'>
+					<Link className="link" to="/">Log out</Link>
+				</div>
+			</nav>
+			<div>
+				files
+				<button onClick={getFiles}>
+					Get Files
+				</button>
+			</div>
 			<form onSubmit={handleSubmit}>
 				<input
 					name='files[]'
