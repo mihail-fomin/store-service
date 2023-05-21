@@ -1,46 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { login } from '../services/auth.service'
+const API_URL = "https://job.kitactive.ru";
+import axios from 'axios';
 
 const initialState = {
-	email: '',
-	password: '',
-	error: null,
-	errors: {},
-	touch: false,
+	files: [],
+	error: '',
+	filesQuanitity: 0,
 }
 
-export const submitForm = createAsyncThunk(
-	'form/submit',
-
+export const mediaRequestAsync = createAsyncThunk(
+	'media/fetch',
+	axios.post(API_URL + '/api/media/upload', formData, {
+		headers: {
+			'Authorization': `Bearer ${accessToken}`,
+			'Content-Type': 'multipart/form-data',
+		}
+	})
 )
 
-// export async function login(email, password) {
-// 	const response = await axios
-// 		.post(API_URL + "/api/login", { email, password })
-// 	if (response.data.token) {
-// 		localStorage.setItem("accessToken", response.data.token);
-// 	}
-
-// 	return response.data.token
-// }
 
 const signInSlice = createSlice({
-	name: 'form',
+	name: 'media',
 	initialState,
 	reducers: {
-		updateFormValue: (state, action) => {
-			state[action.payload.field] = action.payload.value;
-		},
-		setError: (state, action) => ({
-			...state,
-			errors: action.payload,
-		}),
-		clearError: state => {
-			state.error = {}
-		},
-		changeTouch: state => {
-			state.touch = true
-		}
+
 	},
 	extraReducers: builder => {
 		builder

@@ -26,7 +26,23 @@ export async function getFiles() {
 				'Authorization': `Bearer ${accessToken}`,
 			}
 		})
-	console.log('response getFiles: ', response.data.files);
+	// console.log('response getFiles: ', response.data.files);
 	// и возвращаем массив
 	return response.data.files
+}
+
+export async function getFile(id) {
+	// вытаскиваем токен для загрузки файлов
+	const accessToken = localStorage.getItem("accessToken")
+	// запрашиваем файл, используя токен
+	const response = await axios
+		.get(API_URL + `/api/media/${id}`, {
+			headers: {
+				'Authorization': `Bearer ${accessToken}`,
+			}
+		})
+	console.log('response getFile: ', response);
+
+
+	window.open(response)
 }

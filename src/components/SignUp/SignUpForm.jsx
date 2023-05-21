@@ -44,8 +44,6 @@ export default function SignUpForm() {
 					handleChange,
 					handleBlur,
 					handleSubmit,
-					isSubmitting,
-					/* and other goodies */
 				}) => (
 					<Form onSubmit={handleSubmit}>
 
