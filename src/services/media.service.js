@@ -43,6 +43,17 @@ export async function getFile(id) {
 		})
 	console.log('response getFile: ', response);
 
-
 	window.open(response)
+}
+
+export async function deleteFile(id) {
+	// вытаскиваем токен для загрузки файлов
+	const accessToken = localStorage.getItem("accessToken")
+	const response = await axios
+		.delete(API_URL + `/api/media/${id}`, {
+			headers: {
+				'Authorization': `Bearer ${accessToken}`,
+			}
+		})
+	console.log('response upload: ', response);
 }
