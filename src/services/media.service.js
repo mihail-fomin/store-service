@@ -17,7 +17,9 @@ export async function upload(formData) {
 }
 
 export async function getFiles() {
+	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
+	// запрашиваем список файлов, используя токен
 	const response = await axios
 		.get(API_URL + '/api/media', {
 			headers: {
@@ -25,5 +27,6 @@ export async function getFiles() {
 			}
 		})
 	console.log('response getFiles: ', response.data.files);
+	// и возвращаем массив
 	return response.data.files
 }

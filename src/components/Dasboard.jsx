@@ -4,6 +4,11 @@ import { upload, getFiles } from '../services/media.service'
 
 export default function Dashboard() {
 
+	const [files, setFiles] = React.useState([])
+	React.useEffect(() => {
+		getFiles().then((files) => setFiles(files))
+	}, [setFiles])
+
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		const formData = new FormData(event.target)
@@ -21,6 +26,13 @@ export default function Dashboard() {
 			</nav>
 			<div>
 				files
+				<ul>
+					{files.map(file => (
+						<li key={file.id}>
+							{file.name}
+						</li>
+					))}
+				</ul>
 				<button onClick={getFiles}>
 					Get Files
 				</button>
