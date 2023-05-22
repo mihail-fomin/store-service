@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { upload, getFiles, getFile, deleteFile } from '../services/media.service'
+const API_URL = "https://job.kitactive.ru";
 
 export default function Dashboard() {
 	const [files, setFiles] = React.useState([])
@@ -27,13 +28,14 @@ export default function Dashboard() {
 			<div>
 				files: <strong>{files.length}</strong>
 				<ul
-					className='flex gap-2'>
+					className=''>
 					{files.map(file => (
 						<li
 							key={file.id}
-							className=''
+							className='flex gap-2'
 						>
 							<button onClick={() => getFile(file.id)}>
+								{/* <button onClick={() => window.open(`${API_URL}/api/media/${file.id}`)}> */}
 								{file.name}
 							</button>
 							<button onClick={() => deleteFile(file.id)}>
@@ -51,8 +53,14 @@ export default function Dashboard() {
 				<input
 					name='files[]'
 					type='file'
+					disabled={files.length === 20}
 				/>
-				<button type='submit'>Upload</button>
+				<button
+					type='submit'
+					disabled={files.length === 20}
+				>
+					Upload
+				</button>
 			</form>
 		</>
 
