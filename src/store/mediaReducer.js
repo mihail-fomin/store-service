@@ -1,24 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { login } from '../services/auth.service'
-const API_URL = "https://job.kitactive.ru";
-import axios from 'axios';
+import { upload, getFiles, getFile, deleteFile } from "../services/media.service";
 
 const initialState = {
 	files: [],
 	error: '',
-	filesQuanitity: 0,
 }
 
-export const mediaRequestAsync = createAsyncThunk(
+export const uploadFileCreator = createAsyncThunk(
 	'media/fetch',
-	axios.post(API_URL + '/api/media/upload', formData, {
-		headers: {
-			'Authorization': `Bearer ${accessToken}`,
-			'Content-Type': 'multipart/form-data',
-		}
-	})
+	(formData) => upload(formData)
 )
 
+export const getFilesCreator = createAsyncThunk(
+	'media/fetch',
+	() => getFiles()
+)
+
+export const getFileCreator = createAsyncThunk(
+	'media/fetch',
+	({ mimeType, fileName, url }) => getFile({ mimeType, fileName, url })
+)
+
+export const deleteFileCreator = createAsyncThunk(
+	'media/fetch',
+	(id) => deleteFile(id)
+)
 
 const signInSlice = createSlice({
 	name: 'media',
@@ -26,24 +32,8 @@ const signInSlice = createSlice({
 	reducers: {
 
 	},
-	extraReducers: builder => {
-		builder
-			.addCase(submitForm.pending, (state) => {
-				state.status = 'loading'
-				state.response = null
-				state.error = null
-			})
-			.addCase(submitForm.fulfilled, (state, action) => {
-				state.status = 'success'
-				state.response = action.payload
-			})
-			.addCase(submitForm.rejected, (state, action) => {
-				state.status = 'failed'
-				state.error = action.payload
-			})
-	}
 })
 
 
-export const { updateFormValue, setError, clearError, changeTouch } = formSlice.actions
+export const { } = formSlice.actions
 export default signInSlice.reducer
