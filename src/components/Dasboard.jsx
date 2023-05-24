@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { upload, getFiles, getFile, deleteFile } from '../services/media.service'
 
 export default function Dashboard() {
-	const dispatch = useDispatch()
 	const [files, setFiles] = React.useState([])
 
 	React.useEffect(() => {
@@ -40,15 +39,17 @@ export default function Dashboard() {
 			</nav>
 			<div>
 				files: <strong>{files.length}</strong>
-				<ul
-					className=''>
+				<ul>
 					{files.map(file => (
 						<li
 							key={file.id}
-							className='flex gap-2'
+							className='flex items-center gap-2'
 						>
+							{file.mimeType === 'image/svg+xml' || file.mimeType === 'image/png' || file.mimeType === 'image/jpeg' ?
+								'1' :
+								'2'
+							}
 							<button onClick={() => getFile(file)}>
-								{/* <button onClick={() => window.open(`${API_URL}/api/media/${file.id}`)}> */}
 								{file.name}
 							</button>
 							<button onClick={handleDelete(file)}>
