@@ -40,16 +40,17 @@ export async function getFile({ mimeType, fileName, url }) {
 		})
 
 	// создаем xhr запрос
-	const xhr = new XMLHttpRequest();
-	xhr.open("GET", url);
-	xhr.responseType = "blob";
+	const xhr = new XMLHttpRequest()
+	xhr.open("GET", url)
+	xhr.responseType = "blob"
 	xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
 	xhr.onload = function () {
 		if (this.status === 200) {
 			// создаем инстанс blob, передаем ответ
 			const blob = new Blob([this.response], { type: mimeType })
+			console.log('response: ', response)
 			const blobUrl = URL.createObjectURL(blob)
-			const a = document.createElement("a");
+			const a = document.createElement("a")
 			a.href = blobUrl
 			a.download = fileName
 			// помещаем в body

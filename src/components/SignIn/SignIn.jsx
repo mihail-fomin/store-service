@@ -1,5 +1,3 @@
-import { login } from '../../services/auth.service'
-import * as React from 'react'
 import {
 	Link,
 } from "react-router-dom";
@@ -7,8 +5,6 @@ import SignInForm from './SignInForm'
 
 
 export default function SignIn() {
-	const [email, setEmail] = React.useState('')
-	const [password, setPassword] = React.useState('')
 
 
 	return (
@@ -21,32 +17,6 @@ export default function SignIn() {
 				</div>
 			</nav>
 			<SignInForm />
-			{/* <form
-				className='mt-3'
-				onSubmit={handleSubmit}>
-
-				<label>
-					email
-					<input
-						type='email'
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-				</label>
-				<label>
-					password
-					<input
-						type='password'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</label>
-				<button
-					type='submit'
-				>
-					Sign in
-				</button>
-			</form> */}
 		</>
 	)
 }
