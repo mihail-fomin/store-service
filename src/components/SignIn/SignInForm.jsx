@@ -1,12 +1,14 @@
 import { login } from '../../services/auth.service'
-import * as React from 'react'
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
+
+
 export default function SignInForm() {
 	const navigate = useNavigate();
 
 	return (
 		<>
+			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validate={values => {

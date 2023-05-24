@@ -31,12 +31,11 @@ export async function getFile({ mimeType, fileName, url }) {
 	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
 	// запрашиваем файл, используя токен
-	const response = await axios
-		.get(url, {
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-			}
-		})
+	await axios.get(url, {
+		headers: {
+			'Authorization': `Bearer ${accessToken}`,
+		}
+	})
 
 	// создаем xhr запрос
 	const xhr = new XMLHttpRequest();
@@ -66,10 +65,9 @@ export async function getFile({ mimeType, fileName, url }) {
 export async function deleteFile(id) {
 	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
-	const response = await axios
-		.delete(API_URL + `/api/media/${id}`, {
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-			}
-		})
+	await axios.delete(API_URL + `/api/media/${id}`, {
+		headers: {
+			'Authorization': `Bearer ${accessToken}`,
+		}
+	})
 }

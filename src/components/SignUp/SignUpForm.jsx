@@ -1,5 +1,4 @@
 import { register } from '../../services/auth.service'
-import * as React from 'react'
 import { Formik, Form, Field } from 'formik';
 
 export default function SignUpForm() {
@@ -7,6 +6,7 @@ export default function SignUpForm() {
 
 	return (
 		<>
+			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
 			<Formik
 				initialValues={{ email: '', name: '', password: '' }}
 				validate={values => {
