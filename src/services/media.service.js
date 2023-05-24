@@ -5,13 +5,12 @@ const API_URL = "https://job.kitactive.ru";
 export async function upload(formData) {
 	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
-	await axios
-		.post(API_URL + '/api/media/upload', formData, {
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-				'Content-Type': 'multipart/form-data',
-			}
-		})
+	await axios.post(API_URL + '/api/media/upload', formData, {
+		headers: {
+			'Authorization': `Bearer ${accessToken}`,
+			'Content-Type': 'multipart/form-data',
+		}
+	})
 }
 
 export async function getFiles() {
@@ -42,6 +41,7 @@ export async function getFile({ mimeType, fileName, url }) {
 	// создаем xhr запрос
 	const xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
+	// используем blob для корректной загрузки изображений
 	xhr.responseType = "blob";
 	xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
 	xhr.onload = function () {
@@ -72,5 +72,4 @@ export async function deleteFile(id) {
 				'Authorization': `Bearer ${accessToken}`,
 			}
 		})
-	console.log('response upload: ', response);
 }

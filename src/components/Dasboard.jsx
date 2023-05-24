@@ -6,23 +6,29 @@ import { PhotoIcon, DocumentIcon, TrashIcon } from '@heroicons/react/24/outline'
 export default function Dashboard() {
 	const [files, setFiles] = React.useState([])
 
+	// инициируем функцию загрузки файлов хранилища при первом рендере
 	React.useEffect(() => {
 		getFiles().then((files) => setFiles(files))
 	}, [])
 
+	// логику отправки формы выносим в отдельную функцию
 	const handleSubmit = async (event) => {
 		event.preventDefault()
+		// данные передаем с помощью FormData
 		const formData = new FormData(event.target)
 		await upload(formData)
 		const promise = getFiles()
 		const files = await promise
+		// обновляем состояние
 		setFiles(files)
 	}
 
+	// обработчик удаления также выносим в отдельную функцию
 	const handleDelete = (file) => {
 		return async function (event) {
 			event.preventDefault()
 			await deleteFile(file.id)
+			// обновляем состояние
 			setFiles(files.filter(element => {
 				return element.id !== file.id
 			}))
@@ -41,16 +47,20 @@ export default function Dashboard() {
 			<div>
 				files: <strong>{files.length}</strong>
 				<ul>
+					{/* перебираем массив */}
 					{files.map(file => (
 						<li
 							key={file.id}
 							className='flex items-center justify-between gap-2 mt-3'
 						>
 							<div>
+								{/* если у нас картинка ... */}
 								{file.mimeType === 'image/svg+xml' ||
 									file.mimeType === 'image/png' ||
 									file.mimeType === 'image/jpeg' ?
+									// ... возвращаем иконку картинки
 									<PhotoIcon className='w-8 h-8' /> :
+									// ... иначе - иконку файла
 									<DocumentIcon className='w-8 h-8' />
 								}
 							</div>
