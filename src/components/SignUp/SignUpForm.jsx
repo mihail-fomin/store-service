@@ -6,7 +6,7 @@ export default function SignUpForm() {
 
 	return (
 		<>
-			{/* обработку инпутов и валидацию делаем с помощью библиотеки Formik */}
+			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
 			<Formik
 				initialValues={{ email: '', name: '', password: '' }}
 				validate={values => {
@@ -88,7 +88,7 @@ export default function SignUpForm() {
 						{errors.password && touched.password &&
 							<div className='text-red-500'>{errors.password}</div>}
 
-						<button type="submit" disabled={Object.keys(errors).length}>
+						<button className='mt-3' type="submit" disabled={Object.keys(errors).length}>
 							Sign In
 						</button>
 					</Form>

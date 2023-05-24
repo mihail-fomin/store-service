@@ -1,6 +1,7 @@
 import { login } from '../../services/auth.service'
-import { Formik, Form, Field } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function SignInForm() {
@@ -8,7 +9,9 @@ export default function SignInForm() {
 
 	return (
 		<>
-			{/* обработку инпутов и валидацию делаем с помощью библиотеки Formik */}
+
+			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
+
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validate={values => {
@@ -65,7 +68,7 @@ export default function SignInForm() {
 						</label>
 						{errors.password && touched.password &&
 							<div className='text-red-500'>{errors.password}</div>}
-						<button type="submit" disabled={Object.keys(errors).length}>
+						<button className='mt-3' type="submit" disabled={Object.keys(errors).length}>
 							Sign In
 						</button>
 					</Form>

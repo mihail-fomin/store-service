@@ -27,7 +27,6 @@ export async function logout() {
 	const accessToken = localStorage.getItem("accessToken")
 	// и тут же удаляем его
 	localStorage.removeItem("accessToken")
-
 	// в заголовок Authorization передаем токен
 	await axios({
 		method: 'post',
