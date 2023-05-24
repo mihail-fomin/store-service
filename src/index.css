@@ -23,7 +23,7 @@ input:focus {
 }
 
 button {
-	@apply block p-2 mt-3 transition-all duration-100 border-2 rounded border-sky-700
+	@apply block p-2 transition-all duration-100 border-2 rounded border-sky-700
 }
 
 button:hover {
