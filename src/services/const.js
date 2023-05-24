@@ -1,1 +1,0 @@
-// export default const API_URL = "https://job.kitactive.ru"

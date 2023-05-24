@@ -5,13 +5,13 @@ const API_URL = "https://job.kitactive.ru";
 export async function upload(formData) {
 	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
-	await axios
-		.post(API_URL + '/api/media/upload', formData, {
-			headers: {
-				'Authorization': `Bearer ${accessToken}`,
-				'Content-Type': 'multipart/form-data',
-			}
-		})
+	// отправялем наш 
+	await axios.post(API_URL + '/api/media/upload', formData, {
+		headers: {
+			'Authorization': `Bearer ${accessToken}`,
+			'Content-Type': 'multipart/form-data',
+		}
+	})
 }
 
 export async function getFiles() {
@@ -41,14 +41,16 @@ export async function getFile({ mimeType, fileName, url }) {
 
 	// создаем xhr запрос
 	const xhr = new XMLHttpRequest()
+	// определяем тип запроса, url
 	xhr.open("GET", url)
+	// используем blob для корректной загрузки изображений
 	xhr.responseType = "blob"
+	// передаем токен в заголовок
 	xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
 	xhr.onload = function () {
 		if (this.status === 200) {
 			// создаем инстанс blob, передаем ответ
 			const blob = new Blob([this.response], { type: mimeType })
-			console.log('response: ', response)
 			const blobUrl = URL.createObjectURL(blob)
 			const a = document.createElement("a")
 			a.href = blobUrl
@@ -67,11 +69,10 @@ export async function getFile({ mimeType, fileName, url }) {
 export async function deleteFile(id) {
 	// вытаскиваем токен для загрузки файлов
 	const accessToken = localStorage.getItem("accessToken")
-	const response = await axios
+	await axios
 		.delete(API_URL + `/api/media/${id}`, {
 			headers: {
 				'Authorization': `Bearer ${accessToken}`,
 			}
 		})
-	console.log('response upload: ', response);
 }
