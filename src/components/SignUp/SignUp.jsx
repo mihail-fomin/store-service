@@ -10,7 +10,7 @@ export default function SignUp() {
 		<>
 			<nav className="navigation">
 				<div className="font-bold">Sign Up</div>
-				<div className='flex gap-2'>
+				<div className='flex gap-3'>
 					<Link className="link" to="/">Home</Link>
 					<Link className="link" to="/sign-in">Sign In</Link>
 				</div>

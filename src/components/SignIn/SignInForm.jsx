@@ -65,7 +65,7 @@ export default function SignInForm() {
 						</label>
 						{errors.password && touched.password &&
 							<div className='text-red-500'>{errors.password}</div>}
-						<button type="submit" disabled={Object.keys(errors).length}>
+						<button className='mt-3' type="submit" disabled={Object.keys(errors).length}>
 							Sign In
 						</button>
 					</Form>
