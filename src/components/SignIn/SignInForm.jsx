@@ -3,12 +3,15 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
 
+
 export default function SignInForm() {
 	const navigate = useNavigate();
 
 	return (
 		<>
+
 			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
+
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validate={values => {
@@ -18,10 +21,10 @@ export default function SignInForm() {
 					} else if (
 						!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
 					) {
-						errors.email = 'Invalid email address';
+						errors.email = 'Invalid email address'
 					}
 					if (!values.password) {
-						errors.password = 'Password is required';
+						errors.password = 'Password is required'
 					}
 					return errors;
 				}}

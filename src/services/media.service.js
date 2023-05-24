@@ -38,6 +38,7 @@ export async function getFile({ mimeType, fileName, url }) {
 	})
 
 	// создаем xhr запрос
+
 	const xhr = new XMLHttpRequest();
 	xhr.open("GET", url);
 	// используем blob для корректной загрузки изображений
@@ -48,7 +49,7 @@ export async function getFile({ mimeType, fileName, url }) {
 			// создаем инстанс blob, передаем ответ
 			const blob = new Blob([this.response], { type: mimeType })
 			const blobUrl = URL.createObjectURL(blob)
-			const a = document.createElement("a");
+			const a = document.createElement("a")
 			a.href = blobUrl
 			a.download = fileName
 			// помещаем в body
