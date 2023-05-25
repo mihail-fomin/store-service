@@ -1,7 +1,9 @@
 import { register } from '../../services/auth.service'
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpForm() {
+	const navigate = useNavigate();
 
 
 	return (
@@ -35,6 +37,7 @@ export default function SignUpForm() {
 				onSubmit={(values, { setSubmitting }) => {
 					register(values)
 					setSubmitting(false);
+					navigate('/sign-in', { replace: true })
 				}}
 			>
 				{({

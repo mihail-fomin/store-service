@@ -18,7 +18,6 @@ export async function login({ email, password }) {
 		// и сохраняем токен в Local Storage
 		localStorage.setItem("accessToken", response.data.token);
 	}
-
 	return response.data.token
 }
 
