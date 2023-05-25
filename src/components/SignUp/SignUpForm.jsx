@@ -35,9 +35,11 @@ export default function SignUpForm() {
 					return errors;
 				}}
 				onSubmit={(values, { setSubmitting }) => {
-					register(values)
+					const response = register(values)
 					setSubmitting(false);
-					navigate('/sign-in', { replace: true })
+					if (response) {
+						navigate('/sign-in')
+					}
 				}}
 			>
 				{({

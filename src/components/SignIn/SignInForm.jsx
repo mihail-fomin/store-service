@@ -9,9 +9,7 @@ export default function SignInForm() {
 
 	return (
 		<>
-
 			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
-
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				validate={values => {

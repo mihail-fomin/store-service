@@ -1,13 +1,16 @@
 import axios from "axios";
 const API_URL = "https://job.kitactive.ru"
 
-export function register({ email, name, password }) {
+export async function register({ email, name, password }) {
 	// делаем POST-запрос для регистрации
-	return axios.post(API_URL + "/api/register", {
+	const response = await axios.post(API_URL + "/api/register", {
 		email,
 		name,
 		password,
 	});
+	if (response.status === 200) {
+		return true
+	}
 }
 
 export async function login({ email, password }) {
