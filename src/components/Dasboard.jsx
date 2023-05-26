@@ -30,9 +30,9 @@ export default function Dashboard() {
 			event.preventDefault()
 			await deleteFile(file.id)
 			// обновляем состояние
-			setFiles(files.filter(element => {
-				return element.id !== file.id
-			}))
+			const array = files.filter(element =>
+				element.id !== file.id)
+			setFiles(array)
 		}
 	}
 
