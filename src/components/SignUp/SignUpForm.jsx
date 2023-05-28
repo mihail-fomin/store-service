@@ -7,10 +7,11 @@ import { validateSignUp } from '../../services/validate.service';
 
 export default function SignUpForm() {
 	const dispatch = useDispatch()
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 	const email = useSelector(state => state.auth.email)
 	const name = useSelector(state => state.auth.name)
 	const password = useSelector(state => state.auth.password)
+	const { status } = useSelector(state => state.auth)
 
 
 	return (
@@ -19,13 +20,14 @@ export default function SignUpForm() {
 			<Formik
 				initialValues={{ email, name, password }}
 				validate={validateSignUp}
-				onSubmit={(values) => {
-					const response = dispatch(register(values))
-					console.log('response: ', response);
-					if (response) {
-						navigate('/sign-in')
-					}
-				}}
+				onSubmit={
+					(values) => {
+						dispatch(register(values))
+						console.log('status: ', status);
+						if (status === 'resolved') {
+							navigate('/sign-in')
+						}
+					}}
 			>
 				{({
 					values,
@@ -76,7 +78,8 @@ export default function SignUpForm() {
 							/>
 						</label>
 						{errors.password && touched.password &&
-							<div className='text-red-500'>{errors.password}</div>}
+							<div className='text-red-500'>{errors.password}</div>
+						}
 
 						<button className='mt-3' type="submit" disabled={Object.keys(errors).length}>
 							Sign In

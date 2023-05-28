@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { upload, getFiles, getFile, deleteFile } from '../services/media.service'
-import { logout } from '../services/auth.service'
+import { logout } from "../../store/authSlice"
 import { PhotoIcon, DocumentIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Dashboard() {
 	const [files, setFiles] = React.useState([])
+	const dispatch = useDispatch()
 
 	// инициируем функцию загрузки файлов хранилища при первом рендере
 	React.useEffect(() => {
