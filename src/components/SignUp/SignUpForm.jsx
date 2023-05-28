@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { register } from '../../services/auth.service'
+// import { register } from '../../services/auth.service'
+import { register } from "../../store/authSlice";
 import { validateSignUp } from '../../services/validate.service';
 
 export default function SignUpForm() {
@@ -18,9 +19,9 @@ export default function SignUpForm() {
 			<Formik
 				initialValues={{ email, name, password }}
 				validate={validateSignUp}
-				onSubmit={(values, { setSubmitting }) => {
-					const response = register(values)
-					setSubmitting(false);
+				onSubmit={(values) => {
+					const response = dispatch(register(values))
+					console.log('response: ', response);
 					if (response) {
 						navigate('/sign-in')
 					}
