@@ -22,6 +22,8 @@ export default function Dashboard() {
 		const files = await promise
 		// обновляем состояние
 		setFiles(files)
+		console.log('formData: ', formData);
+
 	}
 
 	// обработчик удаления также выносим в отдельную функцию
@@ -81,6 +83,7 @@ export default function Dashboard() {
 				<input
 					name='files[]'
 					type='file'
+					multiple
 					disabled={files.length === 20}
 				/>
 				<button

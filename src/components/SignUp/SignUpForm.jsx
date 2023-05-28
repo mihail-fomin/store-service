@@ -1,17 +1,22 @@
-import { register } from '../../services/auth.service'
-import { Formik, Form, Field } from 'formik';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { Formik, Form, Field } from 'formik';
+import { register } from '../../services/auth.service'
 import { validateSignUp } from '../../services/validate.service';
 
 export default function SignUpForm() {
+	const dispatch = useDispatch()
 	const navigate = useNavigate();
+	const email = useSelector(state => state.auth.email)
+	const name = useSelector(state => state.auth.name)
+	const password = useSelector(state => state.auth.password)
 
 
 	return (
 		<>
 			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
 			<Formik
-				initialValues={{ email: '', name: '', password: '' }}
+				initialValues={{ email, name, password }}
 				validate={validateSignUp}
 				onSubmit={(values, { setSubmitting }) => {
 					const response = register(values)
