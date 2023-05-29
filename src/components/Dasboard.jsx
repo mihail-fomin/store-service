@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { upload, getFiles, getFile, deleteFile } from '../services/media.service'
-import { logout } from "../../store/authSlice"
+import { logout } from "../store/authSlice"
 import { PhotoIcon, DocumentIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,8 +24,6 @@ export default function Dashboard() {
 		const files = await promise
 		// обновляем состояние
 		setFiles(files)
-		console.log('formData: ', formData);
-
 	}
 
 	// обработчик удаления также выносим в отдельную функцию
@@ -46,7 +44,7 @@ export default function Dashboard() {
 			<nav className="navigation">
 				<div className="font-bold">Dasboard</div>
 				<div className='flex gap-4'>
-					<Link className="link" to="/" onClick={() => logout()}>
+					<Link className="link" to="/" onClick={() => dispatch(logout)}>
 						Log out
 					</Link>
 				</div>
