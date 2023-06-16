@@ -1,7 +1,7 @@
 import {
 	Link,
 } from "react-router-dom";
-import SignInForm from './SignInForm'
+import SignInForm from '../SignIn/SignInForm'
 
 
 export default function SignIn() {
