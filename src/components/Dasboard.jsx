@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { upload, getFiles, getFile, deleteFile } from '../services/media.service'
-import { logout } from "../store/authSlice"
+import { logout } from "../services/auth.service"
 import { PhotoIcon, DocumentIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useDispatch, useSelector } from 'react-redux';
 

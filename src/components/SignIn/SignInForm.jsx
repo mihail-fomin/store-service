@@ -1,4 +1,4 @@
-import { login } from "../../store/authSlice"
+import { login } from "../../services/auth.service"
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { validateSignIn } from '../../services/validate.service';
@@ -8,23 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function SignInForm() {
 	const dispatch = useDispatch()
 	const navigate = useNavigate();
-	const email = useSelector(state => state.auth.email)
-	const password = useSelector(state => state.auth.password)
-	const { status } = useSelector(state => state.auth)
 
 	return (
 		<>
 			{/* обрабатываем состояние и валидиурем форму с помощью библиотки Formik */}
 			<Formik
-				initialValues={{ email, password }}
+				initialValues={{ email: '', password: '' }}
 				validate={validateSignIn}
 				onSubmit={
 					(values) => {
-						dispatch(login(values));
-						console.log('status: ', status);
-						if (status === 'resolved') {
-							navigate('/dashboard', { replace: true })
-						}
+						login(values)
+						navigate('/dashboard', { replace: true })
+
 					}}
 			>
 				{({
