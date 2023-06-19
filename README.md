@@ -5,5 +5,5 @@
 
 [Задеплоенная актуальная версия](https://store-service-phi.vercel.app/)
 
-state management - work in progress
+state management - work in progress.
 
