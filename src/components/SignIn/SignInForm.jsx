@@ -2,7 +2,7 @@ import { login } from "../../services/auth.service"
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { validateSignIn } from '../../services/validate.service';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 export default function SignInForm() {
